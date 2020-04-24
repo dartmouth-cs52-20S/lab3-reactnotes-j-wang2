@@ -17,10 +17,10 @@ class Note extends React.Component {
         };
     }
 
-    handleDeleteClick = (id) => {
-        this.setState((prevState) => ({
-            notes: prevState.notes.delete(id),
-        }));
+    handleDeleteClick = () => {
+        console.log('deleting');
+        console.log(this.props.id);
+        this.props.deleteNote(this.props.id);
     }
 
     handleDrag = (e, ui) => {
@@ -54,6 +54,7 @@ class Note extends React.Component {
                     <h1> here we are!</h1>
                     <h1> id={this.props.id} </h1>
                     <h1> title={this.props.note.title} </h1>
+
                     <FontAwesomeIcon onClick={this.handleDeleteClick} icon={faTrash} />
                     <p> content={this.props.note.content} </p>
                     <p>positionX={this.state.x} positionY={this.state.y}</p>

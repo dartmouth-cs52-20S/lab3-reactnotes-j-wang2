@@ -24,10 +24,8 @@ class AddNoteBtn extends Component {
     }
 
     handleClick = () => {
-        console.log('this is the title');
-        console.log(this.state.title);
         this.props.addNote(this.state.title);
-        console.log('clicked!');
+        console.log('clicked! Adding new note');
     }
 
     render() {
