@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 class AddNoteBtn extends Component {
     constructor(props) {
@@ -28,7 +30,10 @@ class AddNoteBtn extends Component {
         return (
             <div className="flex-container" id="add-note">
                 <input onChange={this.onInputChange} />
-                <button onClick={this.handleClick} type="button">Create new note</button>
+                <button id="create-note" className="flex-container" onClick={this.handleClick} type="button">
+                    <FontAwesomeIcon id="transition-icon" onClick={this.handleSaveClick} icon={faPlus} />
+                    <span>Create new note</span>
+                </button>
                 <p> Title value: {this.state.title} </p>
             </div>
         );

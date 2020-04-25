@@ -75,10 +75,12 @@ class Note extends React.Component {
                     onStop={this.handleStopDrag}
                 >
                     <div className="note">
-                        <h1> title={this.props.note.title} </h1>
-                        <FontAwesomeIcon onClick={this.handleSaveClick} icon={faSave} />
-                        <FontAwesomeIcon onClick={this.handleDeleteClick} icon={faTrash} />
-                        <input onChange={this.onInputChange} />
+                        <div className="top-bar flex-container">
+                            <h1> title={this.props.note.title} </h1>
+                            <FontAwesomeIcon onClick={this.handleSaveClick} icon={faSave} />
+                            <FontAwesomeIcon onClick={this.handleDeleteClick} icon={faTrash} />
+                            <input onChange={this.onInputChange} />
+                        </div>
                         <p> positionX={this.state.x} positionY={this.state.y}</p>
                     </div>
                 </Draggable>
@@ -88,9 +90,11 @@ class Note extends React.Component {
             return (
                 <Draggable>
                     <div className="note">
-                        <h1> title={this.props.note.title} </h1>
-                        <FontAwesomeIcon onClick={this.handleEditClick} icon={faEdit} />
-                        <FontAwesomeIcon onClick={this.handleDeleteClick} icon={faTrash} />
+                        <div className="top-bar flex-container">
+                            <h1> {this.props.note.title} </h1>
+                            <FontAwesomeIcon onClick={this.handleEditClick} icon={faEdit} />
+                            <FontAwesomeIcon onClick={this.handleDeleteClick} icon={faTrash} />
+                        </div>
                         <p> content={this.props.note.content} </p>
                         <p> positionX={this.state.x} positionY={this.state.y}</p>
                     </div>
