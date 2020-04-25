@@ -34,7 +34,7 @@ class AddNoteBtn extends Component {
                     <FontAwesomeIcon id="transition-icon" onClick={this.handleSaveClick} icon={faPlus} />
                     <span>Create new note</span>
                 </button>
-                <p> Title value: {this.state.title} </p>
+                {/* <p> Title value: {this.state.title} </p> */}
             </div>
         );
     }
