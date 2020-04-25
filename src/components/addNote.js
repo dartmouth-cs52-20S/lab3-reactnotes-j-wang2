@@ -17,15 +17,11 @@ class AddNoteBtn extends Component {
         console.log(event.target.value);
     }
 
-    addNote = (e, data) => {
-        if (typeof this.props.onChange === 'function') {
-            this.props.addNote(e, data);
-        }
-    }
-
     handleClick = () => {
         this.props.addNote(this.state.title);
         console.log('clicked! Adding new note');
+        // this.setState({ title: event.target.value });
+        console.log(`heres my title ${this.state.title}`);
     }
 
     render() {
