@@ -16,14 +16,11 @@ class AddNoteBtn extends Component {
     // eslint-disable-next-line class-methods-use-this
     onInputChange = (event) => {
         this.setState({ title: event.target.value });
-        console.log(event.target.value);
     }
 
     handleClick = () => {
-        this.props.addNote(this.state.title);
         console.log('clicked! Adding new note');
-        // this.setState({ title: event.target.value });
-        console.log(`heres my title ${this.state.title}`);
+        this.props.addNote(this.state.title);
     }
 
     render() {
@@ -34,7 +31,6 @@ class AddNoteBtn extends Component {
                     <FontAwesomeIcon id="transition-icon" onClick={this.handleSaveClick} icon={faPlus} />
                     <span>Create new note</span>
                 </button>
-                {/* <p> Title value: {this.state.title} </p> */}
             </div>
         );
     }

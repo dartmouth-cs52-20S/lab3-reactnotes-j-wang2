@@ -7,8 +7,6 @@ import marked from 'marked';
 class Note extends React.Component {
     constructor(props) {
         super(props);
-        // this.onClick = this.props.onClicke(this);d
-        console.log(props);
         this.state = {
             x: 0,
             y: 0,
@@ -18,8 +16,7 @@ class Note extends React.Component {
     }
 
     handleDeleteClick = () => {
-        console.log('deleting');
-        console.log(this.props.id);
+        console.log('deleting note!');
         this.props.deleteNote(this.props.id);
     }
 
@@ -34,7 +31,6 @@ class Note extends React.Component {
 
     onInputChange = (event) => {
         this.props.editNote(this.props.id, event.target.value);
-        console.log(event.target.value);
     }
 
     handleDrag = (e, data) => {
@@ -48,7 +44,6 @@ class Note extends React.Component {
     renderNote() {
         if (this.state.isEditing) {
             return (
-                // <div>editing!</div>
                 <Draggable onDrag={this.handleDrag}>
                     <div className="note">
                         <div className="top-bar flex-container">
@@ -71,8 +66,7 @@ class Note extends React.Component {
                             <FontAwesomeIcon onClick={this.handleEditClick} icon={faEdit} />
                             <FontAwesomeIcon onClick={this.handleDeleteClick} icon={faTrash} />
                         </div>
-                        <p> {this.props.note.content} </p>
-                        <div className="noteBody" dangerouslySetInnerHTML={{ __html: marked(this.props.note.text || '') }} />
+                        <div className="noteBody" dangerouslySetInnerHTML={{ __html: marked(this.props.note.content || '') }} />
                         <p> positionX={this.state.x} positionY={this.state.y}</p>
                     </div>
                 </Draggable>

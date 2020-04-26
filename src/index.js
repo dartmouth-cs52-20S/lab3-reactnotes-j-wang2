@@ -34,7 +34,6 @@ class App extends React.Component {
         ];
         const randomColor = noteColors[Math.floor(Math.random() * noteColors.length)];
 
-        console.log(newTitle);
         const id = this.state.notes.size + 1;
         const note = { title: newTitle, content: '', color: randomColor };
         this.setState((prevState) => ({
@@ -44,9 +43,6 @@ class App extends React.Component {
 
     // note the parens which are shorthand for return
     deleteNote = (id) => {
-        console.log(id);
-        console.log(`id: ${id}`);
-        console.log('in deleteNote');
         this.setState((prevState) => ({
             notes: prevState.notes.delete(id),
         }));
