@@ -104,12 +104,16 @@ button#create-note:hover{
   position: absolute;
 }
 .note h1 {
-  margin: 0px;
+  max-height: 3rem;
+  margin-top: 20px;
+  display: inline-block;
   padding: 0px;
+  overflow: auto;
 }
 
 
 .top-bar {
+  max-height: 15%;
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
@@ -118,7 +122,8 @@ button#create-note:hover{
 
 .note textarea {
   border-radius: 5px;
-  height: 10rem;
+  margin: 0px;
+  height: 80%;
 }
 .note textarea:focus {
   border-radius: 5px;

@@ -28,7 +28,6 @@ class Note extends React.Component {
 
     onInputChange = (event) => {
         const updatedNote = { ...this.props.note };
-        console.log(updatedNote);
         updatedNote.content = event.target.value;
         this.props.updateNote(this.props.id, updatedNote);
     }
@@ -39,7 +38,6 @@ class Note extends React.Component {
         const y = this.props.note.y + data.deltaY;
         updatedNote.x = x;
         updatedNote.y = y;
-        console.log(`${x}, ${y}`);
         this.props.updateNote(this.props.id, updatedNote);
     }
 
@@ -54,7 +52,6 @@ class Note extends React.Component {
                             <FontAwesomeIcon onClick={this.handleDeleteClick} icon={faTrash} />
                         </div>
                         <textarea value={this.props.note.content} onChange={this.onInputChange} />
-                        <p> positionX={this.state.x} positionY={this.state.y}</p>
                     </div>
                 </Draggable>
 
@@ -69,7 +66,6 @@ class Note extends React.Component {
                             <FontAwesomeIcon onClick={this.handleDeleteClick} icon={faTrash} />
                         </div>
                         <div className="noteBody" dangerouslySetInnerHTML={{ __html: marked(this.props.note.content || '') }} />
-                        <p> positionX={this.state.x} positionY={this.state.y}</p>
                     </div>
                 </Draggable>
             );
