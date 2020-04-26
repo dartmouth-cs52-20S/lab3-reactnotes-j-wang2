@@ -8,9 +8,6 @@ class Note extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            x: 0,
-            y: 0,
-            // zIndex: 0,
             isEditing: false,
         };
     }
@@ -30,21 +27,26 @@ class Note extends React.Component {
     }
 
     onInputChange = (event) => {
-        this.props.editNote(this.props.id, event.target.value);
+        const updatedNote = { ...this.props.note };
+        console.log(updatedNote);
+        updatedNote.content = event.target.value;
+        this.props.updateNote(this.props.id, updatedNote);
     }
 
     handleDrag = (e, data) => {
-        this.setState((prevState) => ({
-            x: prevState.x + data.deltaX,
-            y: prevState.y + data.deltaY,
-        }));
-        console.log(`(${this.state.x}, ${this.state.y}) --- ${data.deltaX}, ${data.deltaY}`);
+        const updatedNote = { ...this.props.note };
+        const x = this.props.note.x + data.deltaX;
+        const y = this.props.note.y + data.deltaY;
+        updatedNote.x = x;
+        updatedNote.y = y;
+        console.log(`${x}, ${y}`);
+        this.props.updateNote(this.props.id, updatedNote);
     }
 
     renderNote() {
         if (this.state.isEditing) {
             return (
-                <Draggable onDrag={this.handleDrag}>
+                <Draggable position={{ x: this.props.note.x, y: this.props.note.y }} onDrag={this.handleDrag}>
                     <div className="note">
                         <div className="top-bar flex-container">
                             <h1>{this.props.note.title}</h1>
@@ -59,7 +61,7 @@ class Note extends React.Component {
             );
         } else {
             return (
-                <Draggable grid={[5, 5]} onDrag={this.handleDrag}>
+                <Draggable grid={[5, 5]} position={{ x: this.props.note.x, y: this.props.note.y }} onDrag={this.handleDrag}>
                     <div className="note">
                         <div className="top-bar flex-container">
                             <h1> {this.props.note.title} </h1>

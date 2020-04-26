@@ -29,7 +29,7 @@ export function createNote(note) {
 }
 
 export function updateNote(id, note) {
-
+    database.ref('notes').child(id).update(note);
 }
 
 export function deleteNote(id) {

@@ -27,7 +27,12 @@ class App extends React.Component {
 
     addNote = (newTitle) => {
         // const id = this.state.notes.size + 1;
-        const note = { title: newTitle, content: '' };
+        const note = {
+            title: newTitle,
+            content: '',
+            x: 20,
+            y: 20,
+        };
         // this.setState((prevState) => ({
         //     notes: prevState.notes.set(id, note),
         // }));
@@ -42,28 +47,32 @@ class App extends React.Component {
         db.deleteNote(id);
     }
 
-    editNote = (id, newContent) => {
-        this.setState((prevState) => ({
-            notes: prevState.notes.update(id, (n) => {
-                // eslint-disable-next-line prefer-object-spread
-                return Object.assign({}, n, { content: newContent });
-            }),
-        }));
+    // pass in note
+    updateNote = (id, updatedNote) => {
+        db.updateNote(id, updatedNote);
+        // this.setState((prevState) => ({
+        //     notes: prevState.notes.update(id, (n) => {
+        //         // eslint-disable-next-line prefer-object-spread
+        //         // return Object.assign({}, n, { content: newContent });
+        //         // eslint-disable-next-line prefer-object-spread
+        //         db.updateNote(id, Object.assign({}, n, { content: newContent }));
+        //     }),
+        // }));
     }
 
-    updateNoteXY = (id, x, y) => {
-        this.setState((prevState) => ({
-            notes: prevState.notes.update(id, (n) => {
-                // eslint-disable-next-line prefer-object-spread
-                return Object.assign({}, n, { xVal: x, yVal: y });
-            }),
-        }));
-    }
+    // updateNoteXY = (id, xVal, yVal) => {
+    //     this.setState((prevState) => ({
+    //         notes: prevState.notes.update(id, (n) => {
+    //             // eslint-disable-next-line prefer-object-spread
+    //             return Object.assign({}, n, { x: xVal, y: yVal });
+    //             db.updateNote(id, Object.assign({}, n, { content: newContent }));
+    //         }),
+    //     }));
+    // }
 
     renderNoteMap = (notes) => {
-        console.log(notes.toJSON());
         return (notes.entrySeq().map(([id, note]) => {
-            return <Note editNote={this.editNote} deleteNote={this.deleteNote} updateNoteXY={this.updateNoteXY} key={id} id={id} note={note} />;
+            return <Note updateNote={this.updateNote} deleteNote={this.deleteNote} updateNoteXY={this.updateNoteXY} key={id} id={id} note={note} />;
         }));
     }
 
