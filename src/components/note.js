@@ -24,53 +24,18 @@ class Note extends React.Component {
     }
 
     handleEditClick = () => {
-        console.log('editing');
-        console.log(this.props.id);
         this.setState({ isEditing: true });
-        // this.props.editNote(this.props.id);
     }
 
     handleSaveClick = () => {
         console.log('saving');
-        // this.props.editNote(this.props.id, event.target.value);
         this.setState({ isEditing: false });
-        console.log(this.props.note);
-        // console.log(event.target.value);
     }
-
-    // onEditChange = (event) => {
-    //     // const newNote = Object.assign({}, this.state.notes, newNote);
-    //     // this.setState({ this.props.note.content: event.target.value });
-    //     this.props.editNote(this.props.id, event.target.value);
-    //     console.log(event.target.value);
-    // }
-
 
     onInputChange = (event) => {
         this.props.editNote(this.props.id, event.target.value);
-        // this.setState({ content: event.target.value });
         console.log(event.target.value);
     }
-
-    // handleDrag = (e, ui) => {
-    //     console.log('handlingdrag');
-    //     const { x, y } = this.state.deltaPosition;
-    //     this.setState({
-    //       deltaPosition: {
-    //         x: x + ui.deltaX,
-    //         y: y + ui.deltaY,
-    //       },
-    //     });
-    // };
-
-    // handleDrag = (e, data) => {
-    //     console.log('heree');
-    //         let x = prevState.x + data.deltaX,
-    //         let y = prevState.y + data.deltaY,
-
-    //     this.props.updateNoteXY(this.props.id, x, y);
-    //     // console.log(`(${this.state.x}, ${this.state.y}) --- ${data.deltaX}, ${data.deltaY}`);
-    // }
 
     handleDrag = (e, data) => {
         this.setState((prevState) => ({
@@ -84,18 +49,14 @@ class Note extends React.Component {
         if (this.state.isEditing) {
             return (
                 // <div>editing!</div>
-                <Draggable
-                    // handle=".class-of-note-mover-element"
-                    // onDrag={console.log('here')}
-                    onDrag={this.handleDrag}
-                >
+                <Draggable onDrag={this.handleDrag}>
                     <div className="note">
                         <div className="top-bar flex-container">
                             <h1>{this.props.note.title}</h1>
                             <FontAwesomeIcon onClick={this.handleSaveClick} icon={faSave} />
                             <FontAwesomeIcon onClick={this.handleDeleteClick} icon={faTrash} />
                         </div>
-                        <input onChange={this.onInputChange} />
+                        <textarea value={this.props.note.content} onChange={this.onInputChange} />
                         <p> positionX={this.state.x} positionY={this.state.y}</p>
                     </div>
                 </Draggable>
@@ -103,8 +64,7 @@ class Note extends React.Component {
             );
         } else {
             return (
-                <Draggable>
-
+                <Draggable grid={[5, 5]} onDrag={this.handleDrag}>
                     <div className="note">
                         <div className="top-bar flex-container">
                             <h1> {this.props.note.title} </h1>
