@@ -7,10 +7,6 @@ class AddNoteBtn extends Component {
         super(props);
 
         this.state = { title: '' };
-
-        // add to the bottom of your constructor
-        // this.onInputChange = this.onInputChange.bind(this);
-        // this.props = this.props.bind(this);
     }
 
     // eslint-disable-next-line class-methods-use-this
