@@ -16,16 +16,22 @@ firebase.initializeApp(config);
 const database = firebase.database();
 
 
-function fetchNotes(callback) {
-    database().ref('notes').on('value', (snapshot) => {
+export function fetchNotes(callback) {
+    database.ref('notes').on('value', (snapshot) => {
         const newNoteState = snapshot.val();
         // do something with new note state
         callback(newNoteState);
     });
-    // var notes = firebase.database().ref('notes/');
-    // starCountRef.on('value', function(snapshot) {
-    //   updateStarCount(postElement, snapshot.val());
-    // });
 }
 
-export default fetchNotes;
+export function createNote(note) {
+    database.ref('notes').push(note);
+}
+
+export function updateNote(id, note) {
+
+}
+
+export function deleteNote(id) {
+    database.ref('notes').child(id).remove();
+}

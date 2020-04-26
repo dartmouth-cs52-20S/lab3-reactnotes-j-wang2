@@ -6,7 +6,7 @@ import './style.scss';
 // import marked from 'marked';
 import Note from './components/note';
 import AddNoteBtn from './components/addNote';
-// import * as db from './services/datastore';
+import * as db from './services/datastore';
 
 class App extends React.Component {
     constructor(props) {
@@ -19,33 +19,27 @@ class App extends React.Component {
         this.renderNoteMap = this.renderNoteMap.bind(this);
     }
 
-    // componentDidMount() {
-    //     db.fetchNotes((notes) => {
-    //         this.setState({ notes: iMap(notes) });
-    //     });
-    // }
+    componentDidMount() {
+        db.fetchNotes((notes) => {
+            this.setState({ notes: iMap(notes) });
+        });
+    }
 
     addNote = (newTitle) => {
-        // code to get random color for a new note
-        // https://www.geeksforgeeks.org/how-to-pick-a-random-color-from-an-array-using-css-and-javascript/
-        const noteColors = [
-            '#ff0000', '#00ff00', '#0000ff',
-            '#ff3333', '#ffff00', '#ff6600',
-        ];
-        const randomColor = noteColors[Math.floor(Math.random() * noteColors.length)];
-
-        const id = this.state.notes.size + 1;
-        const note = { title: newTitle, content: '', color: randomColor };
-        this.setState((prevState) => ({
-            notes: prevState.notes.set(id, note),
-        }));
+        // const id = this.state.notes.size + 1;
+        const note = { title: newTitle, content: '' };
+        // this.setState((prevState) => ({
+        //     notes: prevState.notes.set(id, note),
+        // }));
+        db.createNote(note);
     }
 
     // note the parens which are shorthand for return
     deleteNote = (id) => {
-        this.setState((prevState) => ({
-            notes: prevState.notes.delete(id),
-        }));
+        // this.setState((prevState) => ({
+        //     notes: prevState.notes.delete(id),
+        // }));
+        db.deleteNote(id);
     }
 
     editNote = (id, newContent) => {
